@@ -5015,6 +5015,12 @@ class SupportCollectionTest extends TestCase
         });
 
         $this->assertSame(['michael', 'tom'], $data->toArray());
+
+        $data = $data->when(true, function ($data) {
+            return $data->firstWhere('name', 'taylor');
+        });
+
+        $this->assertNull($data);
     }
 
     /**
